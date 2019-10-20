@@ -12,11 +12,16 @@ import {MatButtonModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import {MatNativeDateModule} from '@angular/material';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { StandingsTableComponent } from './standings-table/standings-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    StandingsTableComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +34,9 @@ import {MatNativeDateModule} from '@angular/material';
     MatDatepickerModule,
     MatIconModule,
     MatNativeDateModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
