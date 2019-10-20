@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {GetDataService} from '../../servises/get-data.service';
 import {UserSubjectService} from '../../servises/user-subject.service';
 
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -17,7 +18,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpServise.getTeam().subscribe((res: any) => {
-      this.teamLogo = res.api.teams[0].logo;
+     this.teamLogo = res.api.teams[0].logo;
     });
     this.sendUser.newUserSubscribe$.subscribe(user => {
       this.newUser = user;
