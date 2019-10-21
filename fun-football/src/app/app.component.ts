@@ -10,7 +10,7 @@ import {UserSubjectService} from '../../servises/user-subject.service';
 })
 export class AppComponent implements OnInit {
   title = 'fun-football';
-  teamLogo: object;
+  teamLogo: string;
   newUser: object;
 
   constructor(public httpServise: GetDataService, public sendUser: UserSubjectService) {
