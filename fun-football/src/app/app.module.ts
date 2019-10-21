@@ -16,12 +16,18 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { StandingsTableComponent } from './standings-table/standings-table.component';
+import { HomePageComponent } from './home-page/home-page.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterFormComponent,
     StandingsTableComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,6 +43,10 @@ import { StandingsTableComponent } from './standings-table/standings-table.compo
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
+    MatTabsModule,
+    MatCardModule,
+    MatToolbarModule,
+    MatButtonToggleModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
