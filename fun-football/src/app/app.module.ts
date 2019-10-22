@@ -22,6 +22,7 @@ import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {LoginFormComponent} from './login-form/login-form.component';
+import {MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -49,9 +50,11 @@ import {LoginFormComponent} from './login-form/login-form.component';
     MatCardModule,
     MatToolbarModule,
     MatButtonToggleModule,
+    MatDialogModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoginFormComponent]
 })
 export class AppModule {
 }

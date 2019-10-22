@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup,} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-login-form',
@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup,} from '@angular/forms';
 export class LoginFormComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
-  // afterLogin = true;
+  afterLogin = true;
   user: string;
 
   constructor(private fb: FormBuilder) {
@@ -26,6 +26,6 @@ export class LoginFormComponent implements OnInit {
   signIn() {
     console.log(this.loginForm.value);
     this.user = this.loginForm.value.login;
-    // this.afterLogin = false;
+    this.afterLogin = false;
   }
 }

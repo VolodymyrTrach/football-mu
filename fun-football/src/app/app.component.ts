@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {GetDataService} from '../../servises/get-data.service';
 import {UserSubjectService} from '../../servises/user-subject.service';
+import {MatDialog, MatDialogConfig} from '@angular/material';
+import {LoginFormComponent} from './login-form/login-form.component';
 
 
 @Component({
@@ -9,12 +11,13 @@ import {UserSubjectService} from '../../servises/user-subject.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
+  afterLogin = true;
   title = 'fun-football';
   teamLogo: string;
   newUser: object;
   admin = false;
 
-  constructor(public httpServise: GetDataService, public sendUser: UserSubjectService) {
+  constructor(public httpServise: GetDataService, public sendUser: UserSubjectService, private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -27,7 +30,9 @@ export class AppComponent implements OnInit {
      });
   }
 
-  openDialog(){
-
+  openDialog() {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.autoFocus = true;
+    this.dialog.open(LoginFormComponent, dialogConfig);
   }
 }

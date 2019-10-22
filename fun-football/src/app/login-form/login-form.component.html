@@ -1,4 +1,5 @@
-<form [formGroup]="loginForm" class="form">
+<h2 mat-dialog-title>Log In</h2>
+<mat-dialog-content [formGroup]="loginForm">
   <mat-form-field appearance="outline">
     <mat-label>Login</mat-label>
     <input matInput placeholder="Enter Login" formControlName="login" required>
@@ -12,4 +13,9 @@
       <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
-</form>
+</mat-dialog-content>
+  <mat-dialog-actions>
+    <button mat-raised-button (click)="signIn()" color="primary">Log in</button>
+  </mat-dialog-actions>
+
+
