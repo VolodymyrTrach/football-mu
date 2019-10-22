@@ -1,9 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {GetDataService} from '../../servises/get-data.service';
 import {UserSubjectService} from '../../servises/user-subject.service';
 import {MatDialog} from '@angular/material';
 import {LoginFormComponent} from './login-form/login-form.component';
-import {UserCheckService} from '../../servises/user-check.service';
+
 
 
 @Component({
@@ -11,17 +11,18 @@ import {UserCheckService} from '../../servises/user-check.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges {
   afterLogin = true;
-  title = 'fun-football';
   teamLogo: string;
   newUser: object;
   admin = false;
+  logInUser: object;
+  users: object;
 
   constructor(public httpServise: GetDataService,
               public sendUser: UserSubjectService,
-              private dialog: MatDialog,
-              public httpUsers: UserCheckService) {}
+              private dialog: MatDialog) {
+  }
 
   ngOnInit(): void {
     this.httpServise.getTeam().subscribe((res: any) => {
@@ -29,18 +30,16 @@ export class AppComponent implements OnInit {
     });
     this.sendUser.newUserSubscribe$.subscribe(user => {
       this.newUser = user;
-      console.log(this.newUser);
-    });
-    this.httpUsers.getUser().subscribe(user => {
-      console.log(user);
     });
   }
+
+  ngOnChanges(changes: SimpleChanges): void {  }
 
   openDialog() {
     this.dialog.open(LoginFormComponent);
     const dialogRef = this.dialog.open(LoginFormComponent);
-    dialogRef.afterClosed().subscribe(
-      data => console.log('Dialog output:', data)
+    dialogRef.afterClosed().subscribe(data =>
+      this.logInUser = data
     );
   }
 }
