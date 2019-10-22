@@ -3,10 +3,21 @@
   margin: auto;
 }
 
+mat-card-subtitle{
+color: bisque;
+}
+
 .card {
   color: azure;
   max-width: 96%;
   background-color: transparent;
+}
+
+.cardFooter{
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .header-image1 {
