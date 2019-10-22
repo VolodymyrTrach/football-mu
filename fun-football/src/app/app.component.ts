@@ -3,6 +3,7 @@ import {GetDataService} from '../../servises/get-data.service';
 import {UserSubjectService} from '../../servises/user-subject.service';
 import {MatDialog} from '@angular/material';
 import {LoginFormComponent} from './login-form/login-form.component';
+import {UserCheckService} from '../../servises/user-check.service';
 
 
 @Component({
@@ -17,8 +18,10 @@ export class AppComponent implements OnInit {
   newUser: object;
   admin = false;
 
-  constructor(public httpServise: GetDataService, public sendUser: UserSubjectService, private dialog: MatDialog) {
-  }
+  constructor(public httpServise: GetDataService,
+              public sendUser: UserSubjectService,
+              private dialog: MatDialog,
+              public httpUsers: UserCheckService) {}
 
   ngOnInit(): void {
     this.httpServise.getTeam().subscribe((res: any) => {
@@ -27,6 +30,9 @@ export class AppComponent implements OnInit {
     this.sendUser.newUserSubscribe$.subscribe(user => {
       this.newUser = user;
       console.log(this.newUser);
+    });
+    this.httpUsers.getUser().subscribe(user => {
+      console.log(user);
     });
   }
 
