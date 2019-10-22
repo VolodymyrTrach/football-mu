@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {MatDialogRef} from '@angular/material';
 
 @Component({
   selector: 'app-login-form',
@@ -9,23 +10,21 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class LoginFormComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
-  afterLogin = true;
-  user: string;
 
-  constructor(private fb: FormBuilder) {
+
+  constructor(private fb: FormBuilder, private dialogRef: MatDialogRef<LoginFormComponent>) {
   }
 
   ngOnInit() {
     this.loginForm = this.fb.group({
-      login: [''],
-      password: [''],
+      login: '',
+      password: '',
     });
   }
 
   // TODO: add service loginChack
+  // TODO: fix reopening modal!
   signIn() {
-    console.log(this.loginForm.value);
-    this.user = this.loginForm.value.login;
-    this.afterLogin = false;
+    this.dialogRef.close(this.loginForm.value);
   }
 }

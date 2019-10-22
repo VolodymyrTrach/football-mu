@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {GetDataService} from '../../servises/get-data.service';
 import {UserSubjectService} from '../../servises/user-subject.service';
-import {MatDialog, MatDialogConfig} from '@angular/material';
+import {MatDialog} from '@angular/material';
 import {LoginFormComponent} from './login-form/login-form.component';
 
 
@@ -22,17 +22,19 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.httpServise.getTeam().subscribe((res: any) => {
-     this.teamLogo = res.api.teams[0].logo;
+      this.teamLogo = res.api.teams[0].logo;
     });
     this.sendUser.newUserSubscribe$.subscribe(user => {
       this.newUser = user;
       console.log(this.newUser);
-     });
+    });
   }
 
   openDialog() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.autoFocus = true;
-    this.dialog.open(LoginFormComponent, dialogConfig);
+    this.dialog.open(LoginFormComponent);
+    const dialogRef = this.dialog.open(LoginFormComponent);
+    dialogRef.afterClosed().subscribe(
+      data => console.log('Dialog output:', data)
+    );
   }
 }
