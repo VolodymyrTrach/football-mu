@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   title = 'fun-football';
   teamLogo: string;
   newUser: object;
+  admin = false;
 
   constructor(public httpServise: GetDataService, public sendUser: UserSubjectService) {
   }
@@ -24,5 +25,9 @@ export class AppComponent implements OnInit {
       this.newUser = user;
       console.log(this.newUser);
      });
+  }
+
+  openDialog(){
+
   }
 }

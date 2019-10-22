@@ -12,15 +12,16 @@ import {MatButtonModule} from '@angular/material';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatIconModule} from '@angular/material/icon';
 import {MatNativeDateModule} from '@angular/material';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
-import { MatSortModule } from '@angular/material/sort';
-import { StandingsTableComponent } from './standings-table/standings-table.component';
-import { HomePageComponent } from './home-page/home-page.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSortModule} from '@angular/material/sort';
+import {StandingsTableComponent} from './standings-table/standings-table.component';
+import {HomePageComponent} from './home-page/home-page.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {LoginFormComponent} from './login-form/login-form.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
     RegisterFormComponent,
     StandingsTableComponent,
     HomePageComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,
