@@ -1,0 +1,28 @@
+.form {
+  color: bisque;
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  margin: auto;
+}
+button {
+  width: 50%;
+  height: 7%;
+  margin: auto;
+}
+
+h1{
+  text-align: center;
+}
+
+.large-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  border-radius: 8px;
+  margin: auto;
+  width: 65%;
+  height: auto;
+  background-color: #eeeeee85;
+}

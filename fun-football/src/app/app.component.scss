@@ -1,0 +1,17 @@
+.navBar{
+  height: auto;
+  background: linear-gradient(to right, #ff0000 0%, #000066 100%);
+  justify-content: space-around;
+}
+.login{
+  display: flex;
+  justify-content: space-around;
+  width: 15rem;
+  height: auto;
+  background-color: transparent;
+}
+
+mat-button-toggle{
+  color: bisque;
+  background-color: transparent;
+}

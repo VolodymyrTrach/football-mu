@@ -1,0 +1,44 @@
+#main {
+  width: 66%;
+  margin: auto;
+}
+
+mat-card-subtitle{
+color: bisque;
+}
+
+.card {
+  color: azure;
+  max-width: 96%;
+  background-color: transparent;
+}
+
+.cardFooter{
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.header-image1 {
+  background-image: url('https://www.manutd.com/AssetPicker/images/0/0/10/167/698180/Adam_Bath61527670025464_thumb.jpg');
+  background-size: cover;
+}
+
+.header-image2 {
+  background-image: url('https://www.manutd.com/AssetPicker/images/0/0/12/95/810780/Florencia_Bernasconi1568139548659_thumb.jpg');
+  background-size: cover;
+}
+
+.header-image3 {
+  background-image: url('https://www.manutd.com/AssetPicker/images/0/0/12/130/819789/Media_Profiles_HR-181570641778989_thumb.jpg');
+  background-size: cover;
+}
+
+.header-image4 {
+  background-image: url('https://www.manutd.com/assets/images/bg/avatar.png');
+  background-size: cover;
+}
+
+
+

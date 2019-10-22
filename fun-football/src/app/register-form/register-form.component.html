@@ -1,0 +1,64 @@
+<div class="large-box mat-elevation-z4">
+<form [formGroup]="registerForm" class="form" *ngIf="registration">
+  <mat-form-field appearance="outline">
+    <mat-label>First Name</mat-label>
+    <input matInput placeholder="Enter First Name" formControlName="firstName" required >
+    <mat-error *ngIf="formControl.firstName.errors || formControl.firstName.dirty || formControl.firstName.touched || submitted ">
+      Please enter First Name. This field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Last Name</mat-label>
+    <input matInput placeholder="Enter Last Name" formControlName="lastName" required>
+    <mat-error *ngIf="formControl.lastName.errors || formControl.lastName.dirty || formControl.lastName.touched || submitted">
+      Please enter First Name. This field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Enter Email" formControlName="email" required>
+    <mat-error *ngIf="submitted || formControl.email.hasError('required') || formControl.email.dirty || formControl.email.touched">
+      Please enter valid email.This field is required.
+    </mat-error>
+    <mat-error *ngIf="submitted && formControl.email.hasError('email')">
+      E-mail address does not appear to be valid. Please enter valid email.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Enter password" formControlName="password" [type]="hide ? 'password' : 'text'"
+           required>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="submitted || formControl.password.errors || formControl.password.dirty || formControl.password.touched">
+      Please enter password. This field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Confirm password</mat-label>
+    <input matInput placeholder="Confirm password" formControlName="confirmPassword"
+           [type]="hideConfirm ? 'password' : 'text'"
+           required>
+    <button mat-icon-button matSuffix (click)="hideConfirm = !hideConfirm" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hideConfirm">
+      <mat-icon>{{hideConfirm ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="submitted || formControl.confirmPassword.hasError('required') || formControl.confirmPassword.dirty || formControl.confirmPassword.touched">
+      This field is required. You have to confirm password.
+    </mat-error>
+    <mat-error *ngIf="submitted && formControl.confirmPassword.hasError('mustMatch')">
+      It does not mach Password. You have to confirm password.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Date of Birth</mat-label>
+    <input matInput [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <button mat-raised-button color="accent" (click)="onSubmit()">Submit</button>
+</form>
+<h1 *ngIf="!registration">Thank you! Registration is complite. You can login now.</h1>
+</div>

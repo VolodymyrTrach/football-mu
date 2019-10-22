@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "login": "Tester",
+      "firstName": "John",
+      "lastName": "Dou",
+      "email": "hello@com.ua",
+      "password": "12345",
+      "userType": "2"
+    },
+    {
+      "login": "admin",
+      "firstName": "Volodymyr",
+      "lastName": "Trach",
+      "email": "hello@gmail.com",
+      "password": "admin",
+      "userType": "1"
+    }
+  ]
+}
