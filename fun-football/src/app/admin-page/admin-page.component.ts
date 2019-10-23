@@ -16,26 +16,34 @@ export interface Standings {
 const ELEMENT_DATA: Standings[] = [];
 
 @Component({
-  selector: 'app-standings-table',
-  templateUrl: './standings-table.component.html',
-  styleUrls: ['./standings-table.component.scss']
+  selector: 'app-admin-page',
+  templateUrl: './admin-page.component.html',
+  styleUrls: ['./admin-page.component.scss']
 })
-export class StandingsTableComponent implements OnInit {
+export class AdminPageComponent implements OnInit {
+
   displayedColumns = ['rank', 'teamName', 'games', 'win', 'draw', 'lose', 'goalDifr', 'points'];
   dataSource = ELEMENT_DATA;
   fromApi;
   waitForApi = false;
   leagueName: string;
+  idLeague = 2;
+  idTeam = 33;
+  teamLogo: string;
+  panelOpenState: any;
 
   constructor(public httpServise: GetDataService) {
   }
 
   ngOnInit(): void {
-    this.httpServise.getTable(2).subscribe((res: any) => {
+    this.httpServise.getTable(this.idLeague).subscribe((res: any) => {
       this.fromApi = res.api.standings[0];
       this.leagueName = this.fromApi[0].group;
       console.log(res);
       this.userPush();
+    });
+    this.httpServise.getTeam(this.idTeam).subscribe((res: any) => {
+      this.teamLogo = res.api.teams[0].logo;
     });
   }
 
@@ -58,10 +66,3 @@ export class StandingsTableComponent implements OnInit {
     this.waitForApi = true;
   }
 }
-
-
-
-
-
-
-

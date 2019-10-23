@@ -23,6 +23,8 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {LoginFormComponent} from './login-form/login-form.component';
 import {MatDialogModule} from '@angular/material';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -31,6 +33,7 @@ import {MatDialogModule} from '@angular/material';
     StandingsTableComponent,
     HomePageComponent,
     LoginFormComponent,
+    AdminPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ import {MatDialogModule} from '@angular/material';
     MatCardModule,
     MatToolbarModule,
     MatButtonToggleModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent],

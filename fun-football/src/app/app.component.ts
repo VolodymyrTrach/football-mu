@@ -15,9 +15,8 @@ export class AppComponent implements OnInit, OnChanges {
   afterLogin = true;
   teamLogo: string;
   newUser: object;
-  admin = false;
+  admin = true;
   logInUser: object;
-  users: object;
 
   constructor(public httpServise: GetDataService,
               public sendUser: UserSubjectService,
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-    this.httpServise.getTeam().subscribe((res: any) => {
+    this.httpServise.getTeam(33).subscribe((res: any) => {
       this.teamLogo = res.api.teams[0].logo;
     });
     this.sendUser.newUserSubscribe$.subscribe(user => {

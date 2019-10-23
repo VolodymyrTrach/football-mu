@@ -1,0 +1,101 @@
+<h1 class="admin">This is administrator page</h1>
+<div class="example-container mat-elevation-z8">
+<!--<h3>You can choose witch logo to display at navbar</h3>-->
+<mat-accordion>
+  <mat-expansion-panel>
+<mat-expansion-panel-header>
+  <mat-panel-title>
+    You can choose witch logo to display at navbar
+  </mat-panel-title>
+</mat-expansion-panel-header>
+    <mat-button-toggle-group class="adminLogo">
+      <mat-button-toggle>Manchester United</mat-button-toggle>
+      <mat-button-toggle>Real Madrid</mat-button-toggle>
+      <mat-button-toggle>PSG</mat-button-toggle>
+      <mat-button-toggle>Bayern Munich</mat-button-toggle>
+    </mat-button-toggle-group>
+      <h3>Preview:</h3>
+    <img src="{{teamLogo}}" alt="main logo" class="logo">
+</mat-expansion-panel>
+</mat-accordion>
+
+<mat-accordion>
+  <mat-expansion-panel>
+<mat-expansion-panel-header>
+  <mat-panel-title>
+    You can choose witch league table to display
+  </mat-panel-title>
+</mat-expansion-panel-header>
+    <mat-button-toggle-group class="adminLogo">
+      <mat-button-toggle>English PL</mat-button-toggle>
+      <mat-button-toggle>Spain Primera</mat-button-toggle>
+      <mat-button-toggle>France Ligue 1</mat-button-toggle>
+      <mat-button-toggle>Germany Bundesliga</mat-button-toggle>
+    </mat-button-toggle-group>
+      <h3>Preview:</h3>
+    <h1>{{leagueName}}(season 2018-2019)</h1>
+    <div class="example-container mat-elevation-z8" *ngIf="waitForApi">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="rank">
+          <th mat-header-cell *matHeaderCellDef>#</th>
+          <td mat-cell *matCellDef="let element"> {{element.rank}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="teamName">
+          <th mat-header-cell *matHeaderCellDef>Team</th>
+          <td mat-cell *matCellDef="let element">
+            <img src="{{element.logo}}" alt="logo">
+            {{element.teamName}} </td>
+        </ng-container>
+
+        <!-- Games Plaied Column -->
+        <ng-container matColumnDef="games">
+          <th mat-header-cell *matHeaderCellDef> GP </th>
+          <td mat-cell *matCellDef="let element"> {{element.games}} </td>
+        </ng-container>
+
+        <!-- Wins Column -->
+        <ng-container matColumnDef="win">
+          <th mat-header-cell *matHeaderCellDef> W </th>
+          <td mat-cell *matCellDef="let element"> {{element.win}} </td>
+        </ng-container>
+
+        <!-- Drawns Column -->
+        <ng-container matColumnDef="draw">
+          <th mat-header-cell *matHeaderCellDef> D </th>
+          <td mat-cell *matCellDef="let element"> {{element.draw}} </td>
+        </ng-container>
+
+        <!-- Loses Column -->
+        <ng-container matColumnDef="lose">
+          <th mat-header-cell *matHeaderCellDef> L </th>
+          <td mat-cell *matCellDef="let element"> {{element.lose}} </td>
+        </ng-container>
+
+        <!-- Doal Difference Column -->
+        <ng-container matColumnDef="goalDifr">
+          <th mat-header-cell *matHeaderCellDef> GD </th>
+          <td mat-cell *matCellDef="let element"> {{element.goalDifr}} </td>
+        </ng-container>
+
+        <!-- Points Column -->
+        <ng-container matColumnDef="points" class="points">
+          <th mat-header-cell *matHeaderCellDef> Points </th>
+          <td mat-cell *matCellDef="let element"> {{element.points}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+</mat-expansion-panel>
+</mat-accordion>
+</div>
+
+
+
+
+

@@ -1,0 +1,31 @@
+.mat-elevation-z8{
+  width: 80%;
+  margin: auto;
+}
+table.mat-table{
+  width: 100%;
+}
+h1 {
+  text-align: center;
+}
+.admin {
+  color: bisque;
+  text-align: center;
+}
+img {
+  margin-right: 1rem;
+  width: 1.4rem;
+  height: 1.4rem;
+}
+td.mat-cell,th.mat-header-cell{
+  font-size: 1.5rem;
+}
+td.mat-cell:last-of-type{
+  padding-right: 0;
+  width: 50px;
+}
+.logo {
+  margin-right: 1rem;
+  width: 4rem;
+  height: 4rem;
+}
