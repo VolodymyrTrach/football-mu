@@ -9,10 +9,11 @@
   </mat-panel-title>
 </mat-expansion-panel-header>
     <mat-button-toggle-group class="adminLogo">
-      <mat-button-toggle>Manchester United</mat-button-toggle>
-      <mat-button-toggle>Real Madrid</mat-button-toggle>
-      <mat-button-toggle>PSG</mat-button-toggle>
-      <mat-button-toggle>Bayern Munich</mat-button-toggle>
+      <mat-button-toggle (click)="changeLogo(33)">Manchester United</mat-button-toggle>
+      <mat-button-toggle (click)="changeLogo(541)">Real Madrid</mat-button-toggle>
+      <mat-button-toggle (click)="changeLogo(85)">PSG</mat-button-toggle>
+      <mat-button-toggle (click)="changeLogo(157)">Bayern Munich</mat-button-toggle>
+      <mat-button-toggle (click)="changeLogo(489)">AC Milan</mat-button-toggle>
     </mat-button-toggle-group>
       <h3>Preview:</h3>
     <img src="{{teamLogo}}" alt="main logo" class="logo">
@@ -27,16 +28,16 @@
   </mat-panel-title>
 </mat-expansion-panel-header>
     <mat-button-toggle-group class="adminLogo">
-      <mat-button-toggle>English PL</mat-button-toggle>
-      <mat-button-toggle>Spain Primera</mat-button-toggle>
-      <mat-button-toggle>France Ligue 1</mat-button-toggle>
-      <mat-button-toggle>Germany Bundesliga</mat-button-toggle>
+      <mat-button-toggle (click)="changeTable(2)">English PL</mat-button-toggle>
+      <mat-button-toggle (click)="changeTable(87)">Spain Primera</mat-button-toggle>
+      <mat-button-toggle (click)="changeTable(4)">France Ligue 1</mat-button-toggle>
+      <mat-button-toggle (click)="changeTable(8)">Germany Bundesliga</mat-button-toggle>
+      <mat-button-toggle (click)="changeTable(94)">Italy Seria A</mat-button-toggle>
     </mat-button-toggle-group>
       <h3>Preview:</h3>
     <h1>{{leagueName}}(season 2018-2019)</h1>
     <div class="example-container mat-elevation-z8" *ngIf="waitForApi">
       <table mat-table [dataSource]="dataSource">
-
         <!-- Position Column -->
         <ng-container matColumnDef="rank">
           <th mat-header-cell *matHeaderCellDef>#</th>

@@ -15,8 +15,11 @@ export class GetDataService {
   constructor(public httpget: HttpClient) {
   }
 
-  getTeam(idteam) {
-    return this.httpget.get(`https://api-football-v1.p.rapidapi.com/v2/teams/team/${idteam}`, this.httpOptions);
+  getTeam(idTeam) {
+    return this.httpget.get(`https://api-football-v1.p.rapidapi.com/v2/teams/team/${idTeam}`, this.httpOptions);
+  }
+ getAll() {
+    return this.httpget.get('https://api-football-v1.p.rapidapi.com/v2/leagues', this.httpOptions);
   }
 
   getTable(idLeague) {

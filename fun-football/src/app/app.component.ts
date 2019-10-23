@@ -5,7 +5,6 @@ import {MatDialog} from '@angular/material';
 import {LoginFormComponent} from './login-form/login-form.component';
 
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +12,7 @@ import {LoginFormComponent} from './login-form/login-form.component';
 })
 export class AppComponent implements OnInit, OnChanges {
   afterLogin = true;
-  teamLogo: string;
+  teamLogo: object;
   newUser: object;
   admin = true;
   logInUser: object;
@@ -30,9 +29,13 @@ export class AppComponent implements OnInit, OnChanges {
     this.sendUser.newUserSubscribe$.subscribe(user => {
       this.newUser = user;
     });
+    this.sendUser.newAdminLogo$.subscribe(logo => {
+      this.teamLogo = logo;
+    });
   }
 
-  ngOnChanges(changes: SimpleChanges): void {  }
+  ngOnChanges(changes: SimpleChanges): void {
+  }
 
   openDialog() {
     this.dialog.open(LoginFormComponent);

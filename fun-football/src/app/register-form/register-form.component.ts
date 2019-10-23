@@ -15,7 +15,8 @@ export class RegisterFormComponent implements OnInit {
   newUser: object;
   registration = true;
 
-  constructor(private fb: FormBuilder, public sendUser: UserSubjectService) {
+  constructor(private fb: FormBuilder,
+              public sendUser: UserSubjectService) {
   }
 
   ngOnInit() {
@@ -35,8 +36,6 @@ export class RegisterFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.formControl.confirmPassword);
-    console.log(this.formControl.password.errors);
     this.submitted = true;
     if (!this.registerForm.invalid) {
       this.newUser = this.registerForm.value;
