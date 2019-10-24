@@ -35,7 +35,7 @@ export class LoginFormComponent implements OnInit {
     const founded = this.users.find((item) => {
       return item.login === logInUser.login;
     });
-    if (founded) {
+    if (founded.password === logInUser.password) {
         this.dialogRef.close(founded);
     } else {
       this.logMessage = false;

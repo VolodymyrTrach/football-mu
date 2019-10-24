@@ -19,14 +19,13 @@ export class AppComponent implements OnInit {
   isUserLogged = false;
   logInUser: object;
   data = {
-    ligueId : 2,
-    teamId : 33
+    ligueId: 2,
+    teamId: 33
   };
 
   constructor(public httpServise: GetDataService,
               public sendUser: UserSubjectService,
-              private dialog: MatDialog,
-  ) {
+              private dialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -85,5 +84,9 @@ export class AppComponent implements OnInit {
     this.admin = false;
     this.afterLogin = true;
     this.removeData();
+    const data = JSON.parse(sessionStorage.getItem('data'));
+    this.data.teamId = data.teamId;
+    this.data.ligueId = data.ligueId;
+    this.ngOnInit();
   }
 }

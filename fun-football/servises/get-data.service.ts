@@ -18,9 +18,6 @@ export class GetDataService {
   getTeam(idTeam) {
     return this.httpget.get(`https://api-football-v1.p.rapidapi.com/v2/teams/team/${idTeam}`, this.httpOptions);
   }
- getAll() {
-    return this.httpget.get('https://api-football-v1.p.rapidapi.com/v2/leagues', this.httpOptions);
-  }
 
   getTable(idLeague) {
     return this.httpget.get(`https://api-football-v1.p.rapidapi.com/v2/leagueTable/${idLeague}`, this.httpOptions);

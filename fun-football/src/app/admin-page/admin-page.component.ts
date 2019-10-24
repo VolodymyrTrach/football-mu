@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {GetDataService} from '../../../servises/get-data.service';
-import {UserSubjectService} from '../../../servises/user-subject.service';
+
 
 export interface Standings {
   rank: number;
@@ -21,7 +21,7 @@ const ELEMENT_DATA: Standings[] = [];
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss']
 })
-export class AdminPageComponent implements OnInit {
+export class AdminPageComponent implements OnInit, OnDestroy {
 
   displayedColumns = ['rank', 'teamName', 'games', 'win', 'draw', 'lose', 'goalDifr', 'points'];
   dataSource = ELEMENT_DATA;
@@ -32,8 +32,7 @@ export class AdminPageComponent implements OnInit {
   idTeam: string;
   teamLogo: string;
 
-  constructor(public httpServise: GetDataService,
-              public sendAdminData: UserSubjectService) {
+  constructor(public httpServise: GetDataService) {
   }
 
   ngOnInit(): void {
@@ -82,12 +81,23 @@ export class AdminPageComponent implements OnInit {
   changeLogo(idTeam) {
     this.httpServise.getTeam(idTeam).subscribe((res: any) => {
       this.teamLogo = res.api.teams[0].logo;
+      this.idTeam = idTeam;
     });
   }
 
-  private getId() {
+  getId() {
     const data = JSON.parse(sessionStorage.getItem('data'));
+    console.log(data);
     this.idLeague = data.ligueId;
     this.idTeam = data.teamId;
+  }
+
+  ngOnDestroy(): void {
+    const data = JSON.parse(sessionStorage.getItem('data'));
+    data.ligueId = this.idLeague;
+    data.teamId = this.idTeam;
+    console.log(JSON.stringify(data));
+    sessionStorage.removeItem('data');
+    sessionStorage.setItem('data', JSON.stringify(data));
   }
 }
