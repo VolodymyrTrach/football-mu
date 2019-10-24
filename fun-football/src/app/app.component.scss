@@ -6,7 +6,7 @@
 .login{
   display: flex;
   justify-content: space-around;
-  width: 15rem;
+  width: auto;
   height: auto;
   background-color: transparent;
 }
@@ -14,4 +14,12 @@
 mat-button-toggle{
   color: bisque;
   background-color: transparent;
+}
+
+button{
+  margin-left: 2rem;
+}
+
+span{
+  color: bisque;
 }

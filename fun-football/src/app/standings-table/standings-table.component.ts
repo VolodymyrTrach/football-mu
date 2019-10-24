@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {GetDataService} from '../../../servises/get-data.service';
-import {UserSubjectService} from '../../../servises/user-subject.service';
 
 export interface Standings {
   rank: number;
@@ -27,20 +26,15 @@ export class StandingsTableComponent implements OnInit {
   fromApi;
   waitForApi = false;
   leagueName: string;
-  id = 2;
+  id: string;
 
-  constructor(public httpServise: GetDataService,
-              public sendUser: UserSubjectService) {
+  constructor(public httpServise: GetDataService) {
+
   }
 
   ngOnInit(): void {
-    this.sendUser.newAdminTable$.subscribe(table => {
-      console.log(table);
-      this.id = table;
-      console.log('11111111111111');
-    });
+    this.getId();
     this.userPush();
-    console.log('jhsabvcjhbvjahvscjhvj');
   }
 
   userPush() {
@@ -48,7 +42,6 @@ export class StandingsTableComponent implements OnInit {
     this.httpServise.getTable(this.id).subscribe((res: any) => {
       this.fromApi = res.api.standings[0];
       this.leagueName = this.fromApi[0].group;
-      console.log(res);
       // tslint:disable-next-line:prefer-for-of
       for (let i = 0; i < this.fromApi.length; i++) {
         const newRow = {
@@ -66,6 +59,11 @@ export class StandingsTableComponent implements OnInit {
       }
       this.waitForApi = true;
     });
+  }
+
+  private getId() {
+    const data = JSON.parse(sessionStorage.getItem('data'));
+    this.id = data.ligueId;
   }
 }
 

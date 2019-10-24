@@ -6,21 +6,10 @@ import {HttpClient} from '@angular/common/http';
 })
 export class UserCheckService {
 
-  constructor(public httpget: HttpClient) {
+  constructor(public httpRequest: HttpClient) {
   }
 
   getUser() {
-    return this.httpget.get('https://my-json-server.typicode.com/VolodymyrTrach/football-mu/users');
-  }
-
-  userChek(logInUser, users) {
-    const founded = users.find((item) => {
-      return item.login === logInUser.login;
-    });
-    if (founded) {
-      return founded;
-    } else {
-      return false;
-    }
+    return this.httpRequest.get('https://my-json-server.typicode.com/VolodymyrTrach/football-mu/users');
   }
 }

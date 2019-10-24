@@ -1,4 +1,4 @@
-import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GetDataService} from '../../servises/get-data.service';
 import {UserSubjectService} from '../../servises/user-subject.service';
 import {MatDialog} from '@angular/material';
@@ -10,38 +10,80 @@ import {LoginFormComponent} from './login-form/login-form.component';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent implements OnInit {
+
   afterLogin = true;
   teamLogo: object;
   newUser: object;
-  admin = true;
+  admin = false;
+  isUserLogged = false;
   logInUser: object;
+  data = {
+    ligueId : 2,
+    teamId : 33
+  };
 
   constructor(public httpServise: GetDataService,
               public sendUser: UserSubjectService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+  ) {
   }
 
   ngOnInit(): void {
-    this.httpServise.getTeam(33).subscribe((res: any) => {
+    sessionStorage.clear();
+    this.userTypeCheck();
+    this.httpServise.getTeam(this.data.teamId).subscribe((res: any) => {
       this.teamLogo = res.api.teams[0].logo;
     });
     this.sendUser.newUserSubscribe$.subscribe(user => {
       this.newUser = user;
     });
-    this.sendUser.newAdminLogo$.subscribe(logo => {
-      this.teamLogo = logo;
-    });
-  }
-
-  ngOnChanges(changes: SimpleChanges): void {
+    this.setValues();
   }
 
   openDialog() {
-    this.dialog.open(LoginFormComponent);
     const dialogRef = this.dialog.open(LoginFormComponent);
-    dialogRef.afterClosed().subscribe(data =>
-      this.logInUser = data
+    dialogRef.afterClosed().subscribe(data => {
+        this.logInUser = data;
+        this.isUserLogged = true;
+        this.userTypeCheck();
+      }
     );
+  }
+
+  userTypeCheck() {
+    if (this.logInUser) {
+      this.afterLogin = false;
+      // @ts-ignore
+      if (this.logInUser.userType === '1') {
+        this.admin = true;
+        // @ts-ignore
+        this.setData(this.logInUser.userType);
+      } else {
+        // @ts-ignore
+        this.setData(this.logInUser.userType);
+      }
+    }
+  }
+
+  setData(type) {
+    sessionStorage.removeItem('userType');
+    // @ts-ignore
+    sessionStorage.setItem('userType', type);
+  }
+
+  setValues() {
+    sessionStorage.setItem('data', JSON.stringify(this.data));
+  }
+
+  removeData() {
+    sessionStorage.removeItem('userType');
+  }
+
+  logout() {
+    this.logInUser = null;
+    this.admin = false;
+    this.afterLogin = true;
+    this.removeData();
   }
 }
