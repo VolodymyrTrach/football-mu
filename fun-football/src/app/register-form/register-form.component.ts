@@ -43,11 +43,7 @@ export class RegisterFormComponent implements OnInit {
     this.submitted = true;
     if (!this.registerForm.invalid) {
       this.newUser = this.registerForm.value;
-      this.post.postUser(this.newUser);
       this.sendUser.sendUser(this.newUser);
-      this.post.getUser().subscribe(user => {
-        console.log(user);
-      });
       this.registration = false;
     }
   }

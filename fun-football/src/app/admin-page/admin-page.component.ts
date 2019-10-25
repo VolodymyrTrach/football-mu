@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {GetDataService} from '../../../servises/get-data.service';
 
 
@@ -21,7 +21,7 @@ const ELEMENT_DATA: Standings[] = [];
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss']
 })
-export class AdminPageComponent implements OnInit, OnDestroy {
+export class AdminPageComponent implements OnInit {
 
   displayedColumns = ['rank', 'teamName', 'games', 'win', 'draw', 'lose', 'goalDifr', 'points'];
   dataSource = ELEMENT_DATA;
@@ -71,10 +71,10 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     this.waitForApi = false;
     this.idLeague = idLeague;
     this.httpServise.getTable(this.idLeague).subscribe((res: any) => {
-      console.log(res);
       this.fromApi = res.api.standings[0];
       this.leagueName = this.fromApi[0].group;
       this.rowPush();
+      this.updateSorage();
     });
   }
 
@@ -82,22 +82,22 @@ export class AdminPageComponent implements OnInit, OnDestroy {
     this.httpServise.getTeam(idTeam).subscribe((res: any) => {
       this.teamLogo = res.api.teams[0].logo;
       this.idTeam = idTeam;
+      this.updateSorage();
     });
   }
 
   getId() {
     const data = JSON.parse(sessionStorage.getItem('data'));
-    console.log(data);
     this.idLeague = data.ligueId;
     this.idTeam = data.teamId;
   }
 
-  ngOnDestroy(): void {
+  updateSorage() {
     const data = JSON.parse(sessionStorage.getItem('data'));
     data.ligueId = this.idLeague;
     data.teamId = this.idTeam;
-    console.log(JSON.stringify(data));
     sessionStorage.removeItem('data');
     sessionStorage.setItem('data', JSON.stringify(data));
+    console.log(sessionStorage.getItem('data'));
   }
 }

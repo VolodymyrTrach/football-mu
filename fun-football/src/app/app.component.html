@@ -6,7 +6,7 @@
     <mat-button-toggle *ngIf="admin" routerLink="admin">Admin</mat-button-toggle>
   </mat-button-toggle-group>
   <div class="login" *ngIf="afterLogin">
-    <button mat-raised-button color="accent" (click)="openDialog()">Sign In</button>
+    <button mat-raised-button color="accent" (click)="openDialog()">Log In</button>
     <button mat-raised-button color="primary" routerLink="registration">Sign Up</button>
   </div>
   <div class="login" *ngIf="!afterLogin">

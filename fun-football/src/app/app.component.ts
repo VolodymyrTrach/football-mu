@@ -3,6 +3,8 @@ import {GetDataService} from '../../servises/get-data.service';
 import {UserSubjectService} from '../../servises/user-subject.service';
 import {MatDialog} from '@angular/material';
 import {LoginFormComponent} from './login-form/login-form.component';
+import {UserCheckService} from '../../servises/user-check.service';
+import {PostNewUser} from '../../servises/post';
 
 
 @Component({
@@ -14,7 +16,6 @@ export class AppComponent implements OnInit {
 
   afterLogin = true;
   teamLogo: object;
-  newUser: object;
   admin = false;
   isUserLogged = false;
   logInUser: object;
@@ -25,6 +26,7 @@ export class AppComponent implements OnInit {
 
   constructor(public httpServise: GetDataService,
               public sendUser: UserSubjectService,
+              public httpPost: UserCheckService,
               private dialog: MatDialog) {
   }
 
@@ -34,8 +36,22 @@ export class AppComponent implements OnInit {
     this.httpServise.getTeam(this.data.teamId).subscribe((res: any) => {
       this.teamLogo = res.api.teams[0].logo;
     });
-    this.sendUser.newUserSubscribe$.subscribe(user => {
-      this.newUser = user;
+    this.sendUser.newUserSubscribe$.subscribe((user: object) => {
+      // @ts-ignore
+      console.log(user.newUser.login);
+      const postUser = new PostNewUser();
+      // @ts-ignore
+      postUser.login = user.newUser.login;
+      // @ts-ignore
+      postUser.password = user.newUser.password;
+      // @ts-ignore
+      postUser.firstName = user.newUser.firstName;
+      // @ts-ignore
+      postUser.lastName = user.newUser.lastName;
+      // @ts-ignore
+      postUser.email = user.newUser.email;
+      postUser.userType = 1;
+      this.httpPost.postUser(postUser);
     });
     this.setValues();
   }

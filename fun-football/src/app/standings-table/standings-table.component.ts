@@ -34,7 +34,6 @@ export class StandingsTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.getId();
-    console.log(this.id);
     this.userPush();
   }
 

@@ -1,5 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {PostNewUser} from './post';
 
 
 @Injectable({
@@ -10,16 +12,8 @@ export class UserCheckService {
   constructor(public httpRequest: HttpClient) {
   }
 
-  postUser(user) {
-    const body = {
-      login: user.login,
-      firstName: user.firstName,
-      lastName: user.lastName,
-      email: user.email,
-      password: user.password,
-      userType: 2
-    };
-    this.httpRequest.post('https://my-json-server.typicode.com/VolodymyrTrach/football-mu/users', body);
+  postUser(postNewUser: PostNewUser): Observable<any> {
+   return this.httpRequest.post('https://my-json-server.typicode.com/VolodymyrTrach/football-mu/users', postNewUser);
   }
 
   getUser() {
