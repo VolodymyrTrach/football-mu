@@ -3,12 +3,15 @@
   <mat-button-toggle-group class="navMenu">
     <mat-button-toggle routerLink="home">Home</mat-button-toggle>
     <mat-button-toggle routerLink="table">Table</mat-button-toggle>
-    <mat-button-toggle>Extra league</mat-button-toggle>
-    <mat-button-toggle *ngIf="admin">Admin</mat-button-toggle>
+    <mat-button-toggle *ngIf="admin" routerLink="admin">Admin</mat-button-toggle>
   </mat-button-toggle-group>
-  <div class="login">
-    <button mat-raised-button color="accent" (click)="openDialog()" *ngIf="afterLogin">Sign In</button>
+  <div class="login" *ngIf="afterLogin">
+    <button mat-raised-button color="accent" (click)="openDialog()">Log In</button>
     <button mat-raised-button color="primary" routerLink="registration">Sign Up</button>
+  </div>
+  <div class="login" *ngIf="!afterLogin">
+    <span>Wellcome {{logInUser.firstName}} {{logInUser.lastName}}</span>
+    <button mat-raised-button color="primary" (click)="logout()" routerLink="home">Log out</button>
   </div>
 </mat-toolbar>
 <router-outlet></router-outlet>

@@ -1,14 +1,22 @@
 <div class="large-box mat-elevation-z4">
 <form [formGroup]="registerForm" class="form" *ngIf="registration">
   <mat-form-field appearance="outline">
+    <mat-label>Login</mat-label>
+    <input matInput placeholder="Enter Login" formControlName="login" required >
+    <mat-error *ngIf="formControl.login.errors || formControl.login.dirty || formControl.login.touched || submitted ">
+      Please enter Login. This field is required.
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
     <mat-label>First Name</mat-label>
-    <input matInput placeholder="Enter First Name" formControlName="firstName" required >
-    <mat-error *ngIf="formControl.firstName.errors || formControl.firstName.dirty || formControl.firstName.touched || submitted ">
+    <input matInput placeholder="Enter First Name" formControlName="firstName" required>
+    <mat-error
+      *ngIf="formControl.firstName.errors || formControl.firstName.dirty || formControl.firstName.touched || submitted ">
       Please enter First Name. This field is required.
     </mat-error>
   </mat-form-field>
   <mat-form-field appearance="outline">
-    <mat-label>Last Name</mat-label>
+  <mat-label>Last Name</mat-label>
     <input matInput placeholder="Enter Last Name" formControlName="lastName" required>
     <mat-error *ngIf="formControl.lastName.errors || formControl.lastName.dirty || formControl.lastName.touched || submitted">
       Please enter First Name. This field is required.

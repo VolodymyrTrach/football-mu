@@ -25,35 +25,45 @@ export class StandingsTableComponent implements OnInit {
   dataSource = ELEMENT_DATA;
   fromApi;
   waitForApi = false;
+  leagueName: string;
+  id: string;
 
   constructor(public httpServise: GetDataService) {
+
   }
 
   ngOnInit(): void {
-    this.httpServise.getTable().subscribe((res: any) => {
-      this.fromApi = res.api.standings[0];
-      console.log(this.fromApi);
-      this.userPush();
-    });
+    this.getId();
+    this.userPush();
   }
 
   userPush() {
-    // tslint:disable-next-line:prefer-for-of
-    for (let i = 0; i < this.fromApi.length; i++) {
-      const newRow = {
-        rank: this.fromApi[i].rank,
-        logo: this.fromApi[i].logo,
-        teamName: this.fromApi[i].teamName,
-        goalDifr: this.fromApi[i].goalsDiff,
-        points: this.fromApi[i].points,
-        games: this.fromApi[i].all.matchsPlayed,
-        win: this.fromApi[i].all.win,
-        lose: this.fromApi[i].all.lose,
-        draw: this.fromApi[i].all.draw
-      };
-      this.dataSource.push(newRow);
-    }
-    this.waitForApi = true;
+    this.dataSource.splice(0, 25);
+    this.httpServise.getTable(this.id).subscribe((res: any) => {
+      this.fromApi = res.api.standings[0];
+      this.leagueName = this.fromApi[0].group;
+      // tslint:disable-next-line:prefer-for-of
+      for (let i = 0; i < this.fromApi.length; i++) {
+        const newRow = {
+          rank: this.fromApi[i].rank,
+          logo: this.fromApi[i].logo,
+          teamName: this.fromApi[i].teamName,
+          goalDifr: this.fromApi[i].goalsDiff,
+          points: this.fromApi[i].points,
+          games: this.fromApi[i].all.matchsPlayed,
+          win: this.fromApi[i].all.win,
+          lose: this.fromApi[i].all.lose,
+          draw: this.fromApi[i].all.draw
+        };
+        this.dataSource.push(newRow);
+      }
+      this.waitForApi = true;
+    });
+  }
+
+  private getId() {
+    const data = JSON.parse(sessionStorage.getItem('data'));
+    this.id = data.ligueId;
   }
 }
 

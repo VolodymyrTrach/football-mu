@@ -12,8 +12,8 @@ import {UserCheckService} from '../../../servises/user-check.service';
 export class LoginFormComponent implements OnInit {
   hide = true;
   loginForm: FormGroup;
-  users: object;
-
+  users: any;
+  logMessage = true;
 
   constructor(private fb: FormBuilder,
               private dialogRef: MatDialogRef<LoginFormComponent>,
@@ -30,12 +30,19 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  // TODO: fix service loginChack
-  // TODO: fix reopening modal!(its 2 of them)
   signIn() {
-    this.checkUsers.userChek(this.loginForm.value, this.users).subscribe((res: any) => {
-      console.log(res);
+    const logInUser = this.loginForm.value;
+    const founded = this.users.find((item) => {
+      return item.login === logInUser.login;
     });
-    this.dialogRef.close(this.loginForm.value);
+    if (founded.password === logInUser.password) {
+        this.dialogRef.close(founded);
+    } else {
+      this.logMessage = false;
+    }
+  }
+
+  exit() {
+    this.dialogRef.close();
   }
 }

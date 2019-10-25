@@ -1,6 +1,7 @@
 {
   "users": [
     {
+      "id": 1,
       "login": "Tester",
       "firstName": "John",
       "lastName": "Dou",
@@ -9,6 +10,7 @@
       "userType": "2"
     },
     {
+      "id": 2,
       "login": "admin",
       "firstName": "Volodymyr",
       "lastName": "Trach",
