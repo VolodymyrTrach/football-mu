@@ -25,7 +25,7 @@ import {LoginFormComponent} from './login-form/login-form.component';
 import {MatDialogModule} from '@angular/material';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import {MatExpansionModule} from '@angular/material/expansion';
-import {AdminPageActivateGuard} from '../../guards/admin-page-activate.guard';
+import {AdminPageActivateGuard} from './guards/admin-page-activate.guard';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({

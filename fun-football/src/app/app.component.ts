@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {GetDataService} from '../../servises/get-data.service';
-import {UserSubjectService} from '../../servises/user-subject.service';
+import {GetDataService} from './servises/get-data.service';
+import {UserSubjectService} from './servises/user-subject.service';
 import {MatDialog} from '@angular/material';
 import {LoginFormComponent} from './login-form/login-form.component';
-import {UserCheckService} from '../../servises/user-check.service';
-import {PostNewUser} from '../../servises/post';
+import {UserCheckService} from './servises/user-check.service';
+import {PostNewUser} from './servises/post';
 
 
 @Component({
