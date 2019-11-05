@@ -7,12 +7,11 @@ import {ActivatedRouteSnapshot, RouterStateSnapshot} from '@angular/router';
 export class AdminPageActivateGuard {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const userType = sessionStorage.getItem('userType');
-    // if (userType === '1') {
-    //   return true;
-    // } else {
-    //   return false;
-    // }
-    return userType === '1'; // todo: is that works?
+    if (userType === '1') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 

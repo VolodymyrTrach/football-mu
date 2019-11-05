@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {GetDataService} from '../../../servises/get-data.service';
+import {GetDataService} from '../servises/get-data.service';
 
 
 export interface Standings {

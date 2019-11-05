@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {MatDialogRef} from '@angular/material';
-import {UserCheckService} from '../../../servises/user-check.service';
+import {UserCheckService} from '../servises/user-check.service';
 
 
 @Component({
